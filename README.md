@@ -19,20 +19,20 @@
 
 #### Google Chrome ユーザーはこちら
 
-1. [/dist/bookmarklet.js](dist/bookmarklet.js) を開きJsコードを丸々コピーする
+1. [Releasesページ](https://github.com/tsubasa/rakumoKintaiBookmarklet/releases)を開き最新のブックマークレット本体のJSコードをコピーする
 2. Google Chromeを起動し、ブックマークマネージャー( `chrome://bookmarks/` )を開く
 3. 開いたページ内で右クリックし、「新しいブックマークを追加」をクリック
-4. 名前はお好きにどうぞ「rakumoタイムカードブックマークレット」など
-5. URLに先程コピーしたJsコードを貼り付ける
+4. タイトルを入力「rakumoキンタイブックマークレット」など
+5. URLに先程コピーしたJSコードを貼り付ける
 6. `[保存]`をクリックして完了
 
 #### Firefox ユーザーはこちら
 
-1. [/dist/bookmarklet.js](dist/bookmarklet.js) を開きJsコードを丸々コピーする
+1. [Releasesページ](https://github.com/tsubasa/rakumoKintaiBookmarklet/releases)を開き最新のブックマークレット本体のSコードをコピーする
 2. Firefoxを起動し、ブックマーク管理を開く
 3. 開いたウィンドウ内で右クリックし、「新しいブックマーク」をクリック
-4. 名前はお好きにどうぞ「rakumoタイムカードブックマークレット」など
-5. URLに先程コピーしたJsコードを貼り付ける
+4. タイトルを入力「rakumoキンタイブックマークレット」など
+5. URLに先程コピーしたJSコードを貼り付ける
 6. `[追加]`をクリックして完了
 
 * [ブックマークレットをインストールする方法 | Firefox ヘルプ](https://support.mozilla.org/ja/kb/bookmarklets-perform-common-web-page-tasks)
