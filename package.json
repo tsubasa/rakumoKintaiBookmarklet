@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc && gulp build",
     "watch": "tsc -w",
-    "lint": "tsc --noEmit && eslint src --ext .js,.ts --fix"
+    "lint": "tsc --noEmit && eslint src --ext .js,.ts --fix",
+    "test": "jest --env=jsdom --watch"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/tsubasa/rakumoKintaiBookmarklet#readme",
   "devDependencies": {
+    "@types/jest": "^24.0.25",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
     "eslint": "^6.8.0",
@@ -32,7 +34,9 @@
     "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-terser": "^1.2.0",
+    "jest": "^24.9.0",
     "prettier": "^1.19.1",
+    "ts-jest": "^24.3.0",
     "typescript": "^3.7.4"
   }
 }
