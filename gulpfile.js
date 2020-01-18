@@ -17,7 +17,13 @@ gulp.task('build', async () => {
       .pipe(replace(/export\s/g, ''))
       .pipe(
         terser({
-          module: true
+          compress: true,
+          toplevel: true,
+          mangle: {
+            properties: {
+              regex: /^_/
+            }
+          }
         })
       )
       .pipe(replace(/%60/g, '% 60')) // Chromeでブックマークレットを登録するときに ` に変換されるための対策

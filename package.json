@@ -4,7 +4,7 @@
   "description": "rakumoキンタイ用ブックマークレット",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && gulp build",
+    "build": "ttsc && gulp build",
     "watch": "tsc -w",
     "lint": "tsc --noEmit && eslint src --ext .js,.ts --fix",
     "test": "jest --env=jsdom --watch"
@@ -37,6 +37,8 @@
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "ts-jest": "^24.3.0",
+    "ts-transformer-minify-privates": "^0.3.0",
+    "ttypescript": "^1.5.10",
     "typescript": "^3.7.4"
   }
 }
