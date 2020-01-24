@@ -44,12 +44,18 @@ const getPeriodId = (): number | undefined => {
   return match ? parseInt(match[1], 10) : undefined;
 };
 
-const appendItem = (name: string, value: string | number): void => {
+const appendItem = (name: string, value: string | number, columnIndex = 1): void => {
+  const column = document.querySelector(`.report-summary .column:nth-child(${columnIndex})`);
+
   const e = document.createElement('div');
-  e.className = 'item';
+  e.className = `item item-${columnIndex}`;
   e.innerHTML = `<div class="name">${name}</div><div class="value">${value}</div>`;
-  const column = document.querySelector(`.report-summary .column:nth-child(1)`);
-  if (column) column.appendChild(e);
+
+  if (column) {
+    const currentItem = column.querySelector(`.item-${columnIndex}`);
+    if (currentItem && column.lastChild) column.removeChild(column.lastChild);
+    column.appendChild(e);
+  }
 };
 
 const formattedTime = (minutes: number): string =>
