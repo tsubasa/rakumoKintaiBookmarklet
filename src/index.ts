@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 // types
 type RakumoKintaiAppConfig = {
   settings: {
@@ -38,7 +40,7 @@ type AttendanceReportsRequestParams = { periodId: string; userKey: string };
 
 type AttendanceRecordsRequestParams = { periodId: string };
 
-// Utilities
+// utilities
 const getPeriodId = (): number | undefined => {
   const match = window.location.pathname.match(/\/attendance\/reports\/(\d+).*/);
   return match ? parseInt(match[1], 10) : undefined;
@@ -97,6 +99,38 @@ class RakumoKintaiApp {
   }
 }
 
+class RakumoKintaiCalculator {
+  private workingMinutes = 0;
+
+  private actualWorkingMinutes = 0;
+
+  private notWorkingMinutes = 0;
+
+  public constructor(records: AttendanceRecord[]) {
+    records.forEach(v => this.calc(v));
+  }
+
+  private calc(record: AttendanceRecord): void {
+    if (
+      record.workingDay &&
+      ((record.checkInStamp && record.checkOutStamp) ||
+        (!record.checkInStamp &&
+          !record.checkOutStamp &&
+          record.leaves &&
+          record.leaves.find(leave => leave.unit === 'full-day')))
+    ) {
+      this.workingMinutes += record.workingDay.workingMinutes;
+      this.actualWorkingMinutes += record.actualWorkingMinutes;
+      this.notWorkingMinutes += record.leaves ? record.leaves.reduce((acc, cur) => acc + cur.minutes, 0) : 0;
+    }
+  }
+
+  public get overtimeWorkingMinutes(): number {
+    const overtimeWorkingMinutes = this.actualWorkingMinutes - this.workingMinutes + this.notWorkingMinutes;
+    return overtimeWorkingMinutes < 0 ? 0 : overtimeWorkingMinutes;
+  }
+}
+
 // main
 (async (): Promise<void> => {
   const { settings } = window.appConfig;
@@ -112,31 +146,8 @@ class RakumoKintaiApp {
 
   if (periodId) {
     const records = await app.getRecords(periodId);
+    const calc = new RakumoKintaiCalculator(records.items);
 
-    let workingMinutes = 0; // 所定労働時間
-    let actualWorkingMinutes = 0; // 実労働時間
-    let notWorkingMinutes = 0; // 休暇取得時間
-    let overtimeWorkingMinutes = 0;
-
-    records.items.forEach(v => {
-      if (
-        v.workingDay &&
-        ((v.checkInStamp && v.checkOutStamp) ||
-          (!v.checkInStamp && !v.checkOutStamp && v.leaves && v.leaves.find(leave => leave.unit === 'full-day')))
-      ) {
-        workingMinutes += v.workingDay.workingMinutes;
-        actualWorkingMinutes += v.actualWorkingMinutes;
-        notWorkingMinutes += v.leaves ? v.leaves.reduce((acc, cur) => acc + cur.minutes, 0) : 0;
-      }
-    });
-
-    overtimeWorkingMinutes = actualWorkingMinutes - workingMinutes + notWorkingMinutes;
-    if (overtimeWorkingMinutes < 0) overtimeWorkingMinutes = 0;
-
-    // console.log('所定労働時間', workingMinutes);
-    // console.log('実労働時間', actualWorkingMinutes);
-    // console.log('時間外労働時間', overtimeWorkingMinutes);
-
-    appendItem('本日までの時間外労働時間', formattedTime(overtimeWorkingMinutes));
+    appendItem('本日までの時間外労働時間', formattedTime(calc.overtimeWorkingMinutes));
   }
 })();
