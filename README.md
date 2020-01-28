@@ -28,7 +28,7 @@
 
 #### Firefox ユーザーはこちら
 
-1. [Releasesページ](https://github.com/tsubasa/rakumoKintaiBookmarklet/releases)を開き最新のブックマークレット本体のSコードをコピーする
+1. [Releasesページ](https://github.com/tsubasa/rakumoKintaiBookmarklet/releases)を開き最新のブックマークレット本体のJSコードをコピーする
 2. Firefoxを起動し、ブックマーク管理を開く
 3. 開いたウィンドウ内で右クリックし、「新しいブックマーク」をクリック
 4. タイトルを入力「rakumoキンタイブックマークレット」など
