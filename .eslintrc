@@ -19,6 +19,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "no-console": ["warn", { "allow": ["error", "warn"] }],
+    "import/extensions": "off",
     "import/no-unresolved": "off",
     "prettier/prettier": "warn"
   },
