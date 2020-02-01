@@ -1,5 +1,7 @@
 # rakumoKintaiBookmarklet
 
+![CI](https://github.com/tsubasa/rakumoKintaiBookmarklet/workflows/CI/badge.svg)
+
 ## これはなに？
 
 弊社で利用しているrakumoキンタイの機能を拡張するブックマークレットです。
