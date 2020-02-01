@@ -22,6 +22,7 @@
   "homepage": "https://github.com/tsubasa/rakumoKintaiBookmarklet#readme",
   "devDependencies": {
     "@types/jest": "^25.1.1",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.0",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
@@ -41,5 +42,8 @@
     "ts-transformer-minify-privates": "^0.3.0",
     "ttypescript": "^1.5.10",
     "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   }
 }
