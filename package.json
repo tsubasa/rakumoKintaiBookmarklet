@@ -4,7 +4,7 @@
   "description": "rakumoキンタイ用ブックマークレット",
   "main": "index.js",
   "scripts": {
-    "build": "ttsc && gulp build",
+    "build": "gulp setup && ttsc && gulp build",
     "watch": "tsc -w",
     "lint": "tsc --noEmit && eslint src --ext .js,.ts --fix",
     "test": "jest --env=jsdom --watch"
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/tsubasa/rakumoKintaiBookmarklet#readme",
   "devDependencies": {
     "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
     "eslint": "^6.8.0",
