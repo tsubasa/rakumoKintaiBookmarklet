@@ -45,7 +45,7 @@ const formattedTime = (minutes: number): string => {
 };
 
 // main
-(async (): Promise<void> => {
+const run = async (): Promise<void> => {
   const { settings } = window.appConfig;
   const app = new RakumoKintaiApp(settings.account.userId, settings.attendance.defaultPeriodId);
 
@@ -60,7 +60,16 @@ const formattedTime = (minutes: number): string => {
   if (periodId) {
     const records = await app.getRecords(periodId);
     const calc = new RakumoKintaiCalculator(records.items);
-
-    appendItem('現在までの時間外労働時間', formattedTime(calc.overtimeWorkingMinutes));
+    const date = new Date();
+    appendItem(
+      `現在までの時間外労働時間 (集計時間 ${String(date.getHours()).padStart(2, '0')}:${String(
+        date.getMinutes()
+      ).padStart(2, '0')})`,
+      formattedTime(calc.overtimeWorkingMinutes)
+    );
   }
-})();
+};
+
+run();
+
+['.btn-checkOut', '.update-button-wrapper'].forEach(v => document.querySelector(v)?.addEventListener('click', run));
