@@ -16,6 +16,7 @@
 
 * Google Chrome v80+
 * Firefox v72+
+* Microsfot Edge v80+
 
 ### ブックマークレットを使えるようにする
 
