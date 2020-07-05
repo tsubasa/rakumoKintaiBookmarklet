@@ -25,7 +25,7 @@ const createRecord = (record: DeepPartial<TestAttendanceRecord> = {}, date = '20
       checkInStamp: {
         roundedDatetime: `${date}T02:00:00Z`
       },
-      checkOutStamp: {},
+      checkOutStamp: { roundedDatetime: `${date}T10:00:00Z` },
       actualWorkingMinutes: 480,
       flows: [],
       workingDay: {
