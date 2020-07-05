@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "lint": "tsc --noEmit && eslint src --ext .js,.ts --fix",
     "test": "jest --env=jsdom --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --env=jsdom --ci"
   },
   "repository": {
     "type": "git",
