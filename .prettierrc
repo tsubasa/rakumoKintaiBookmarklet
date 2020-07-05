@@ -5,6 +5,5 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "useTabs": false,
-  "jsxBracketSameLine": false,
-  "parser": "typescript"
+  "jsxBracketSameLine": false
 }

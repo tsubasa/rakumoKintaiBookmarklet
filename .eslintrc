@@ -1,18 +1,13 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
-  "env": {
-    "browser": true,
-    "jest": true
-  },
   "extends": [
     "airbnb-base",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
+  "env": {
+    "browser": true,
+    "jest": true
   },
   "rules": {
     "@typescript-eslint/camelcase": "off",
@@ -22,6 +17,5 @@
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "prettier/prettier": "warn"
-  },
-  "plugins": ["prettier"]
+  }
 }
