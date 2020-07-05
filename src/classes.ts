@@ -16,7 +16,7 @@ type AttendanceRecord = {
   // checkInLateMinutes: number; // 遅刻によるペナルティ時間
   // checkOutEarlyMinutes: number; // 早退によるペナルティ時間
   checkInStamp: { roundedDatetime: string } | null; // 出勤が打刻されると反映
-  checkOutStamp: {} | null; // 退勤が打刻されると反映
+  checkOutStamp: { roundedDatetime: string } | null; // 退勤が打刻されると反映
   flows: RecordFlow[]; // 申請手続き
   // breaks: { startTime: string; endTime: string }[]; // 実際の休憩時間
   workingDay?: {
@@ -66,7 +66,7 @@ class RakumoKintaiApp {
   }
 
   private async req<T, P extends { [key: string]: string }>(path: string, params?: P): Promise<T> {
-    return fetch(`${this.BASE_API_URL}/${path}?${new URLSearchParams(params)}`).then(res => res.json());
+    return fetch(`${this.BASE_API_URL}/${path}?${new URLSearchParams(params)}`).then((res) => res.json());
   }
 }
 
@@ -84,7 +84,7 @@ class RakumoKintaiCalculator {
   private readonly breakStartTime = `${this.getTodayDate()}T04:00:00Z`;
 
   public constructor(records: AttendanceRecord[]) {
-    records.forEach(v => this.calc(v));
+    records.forEach((v) => this.calc(v));
   }
 
   private calc(record: AttendanceRecord): void {
@@ -108,7 +108,7 @@ class RakumoKintaiCalculator {
             0
           );
 
-          if (record.flows.find(v => v.params.leaveUnit === 'half-day' && v.params.leaveUnitType === 'am')) {
+          if (record.flows.find((v) => v.params.leaveUnit === 'half-day' && v.params.leaveUnitType === 'am')) {
             dayOffAmBreakMinutes = this.calcDiffMinutes(checkInTime, this.breakStartTime);
           }
 

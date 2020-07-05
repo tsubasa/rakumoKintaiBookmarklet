@@ -72,4 +72,4 @@ const run = async (): Promise<void> => {
 
 run();
 
-['.btn-checkOut', '.update-button-wrapper'].forEach(v => document.querySelector(v)?.addEventListener('click', run));
+['.btn-checkOut', '.update-button-wrapper'].forEach((v) => document.querySelector(v)?.addEventListener('click', run));
