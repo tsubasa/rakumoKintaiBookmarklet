@@ -17,6 +17,9 @@
   "keywords": [],
   "author": "tsubasa",
   "license": "MIT",
+  "engines": {
+    "node": "12.x"
+  },
   "bugs": {
     "url": "https://github.com/tsubasa/rakumoKintaiBookmarklet/issues"
   },
@@ -42,7 +45,7 @@
     "ts-jest": "^26.1.1",
     "ts-transformer-minify-privates": "^0.3.0",
     "ttypescript": "^1.5.10",
-    "typescript": "^3.9.6"
+    "typescript": "^4.9.3"
   },
   "dependencies": {
     "lodash": "^4.17.15"

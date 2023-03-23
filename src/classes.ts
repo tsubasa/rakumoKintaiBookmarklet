@@ -4,7 +4,7 @@ type LeaveUnit = 'full-day' | 'half-day';
 
 type LeaveUnitType = null | 'am' | 'pm';
 
-type RecordFlow = { params: { leaveUnitType: LeaveUnitType; leaveUnit: LeaveUnit } };
+type RecordFlow = { params: { leaveUnitType: LeaveUnitType; leaveUnit: LeaveUnit }; status: 2 | 6 }; // status 2: Approve, 6: Canceled
 
 type AttendanceReport = {
   periodId: number;
@@ -124,20 +124,22 @@ class RakumoKintaiCalculator {
   }
 
   private calcNotWorkingMinutes(flows: RecordFlow[]): number {
-    return flows.reduce((acc, cur) => {
-      const { leaveUnit, leaveUnitType } = cur.params;
+    return flows
+      .filter((v) => v.status === 2)
+      .reduce((acc, cur) => {
+        const { leaveUnit, leaveUnitType } = cur.params;
 
-      if (leaveUnit === 'full-day') {
-        return acc + this.AM_OFF + this.PM_OFF;
-      }
+        if (leaveUnit === 'full-day') {
+          return acc + this.AM_OFF + this.PM_OFF;
+        }
 
-      if (leaveUnit === 'half-day') {
-        if (leaveUnitType === 'am') return acc + this.AM_OFF;
-        if (leaveUnitType === 'pm') return acc + this.PM_OFF;
-      }
+        if (leaveUnit === 'half-day') {
+          if (leaveUnitType === 'am') return acc + this.AM_OFF;
+          if (leaveUnitType === 'pm') return acc + this.PM_OFF;
+        }
 
-      return acc;
-    }, 0);
+        return acc;
+      }, 0);
   }
 
   private calcDiffMinutes(date1: string, date2: string): number {
